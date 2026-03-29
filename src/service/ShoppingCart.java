@@ -4,8 +4,13 @@ import model.Food;
 import model.constants.Discount;
 
 public class ShoppingCart {
-    private static Food[] food = new Food[3];
-    public static double Summa(Food[] food) {
+    private Food[] food;
+
+    public ShoppingCart(Food[] food) {
+        this.food = food;
+    }
+
+    public double getTotalPrice( ) {
             double summa=0;
             for (int i = 0; i < food.length; i++) {
                 summa = summa + food[i].getAmount() * food[i].getPrice();
@@ -13,14 +18,13 @@ public class ShoppingCart {
             return summa;
         }
 
-        public static double Summa_sk(Food[] food) {
+        public double getDiscountPrice() {
             double summa=0;
             for (int i = 0; i <food.length; i++) {
                 if (food[i] instanceof Apple) {
                     Apple myApple = (Apple) food[i];
                     if ("red".equals(myApple.getColour())){
-                    Discount discount = new Discount("red",food[i].getPrice());
-                    summa = summa + food[i].getAmount() * discount.getDiscount();}
+                    summa = summa + food[i].getAmount() * food[i].getPrice()*Discount.RED_APPLE_DISCOUNT;}
                     else{summa = summa + food[i].getAmount() * food[i].getPrice();}
                 } else {
                     summa = summa + food[i].getAmount() * food[i].getPrice();
@@ -28,7 +32,7 @@ public class ShoppingCart {
             }
             return summa;
         }
-        public static double Summa_veg(Food[] food){
+        public double getTotalVeganPrice(){
             double summa=0;
             for (int i = 0; i <food.length; i++) {
                 if (food[i].isVegetarian()==true) {
