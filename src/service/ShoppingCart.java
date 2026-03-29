@@ -24,7 +24,7 @@ public class ShoppingCart {
                 if (food[i] instanceof Apple) {
                     Apple myApple = (Apple) food[i];
                     if ("red".equals(myApple.getColour())){
-                    summa = summa + food[i].getAmount() * food[i].getPrice()*Discount.RED_APPLE_DISCOUNT;}
+                    summa = summa + food[i].getAmount() * food[i].getPrice()*(1-Discount.RED_APPLE_DISCOUNT);}
                     else{summa = summa + food[i].getAmount() * food[i].getPrice();}
                 } else {
                     summa = summa + food[i].getAmount() * food[i].getPrice();
